@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.image.db.dao.ImageDao">
+    <resultMap id="imageItem" type="com.example.image.container.Image">
+        <result column="IMAGE" property="image" javaType="string"/>
+        <result column="HASH" property="hash" javaType="string"/>
+        <result column="COLLECT_SITE" property="collect_site" javaType="string"/>
+        <result column="REG_DT" property="reg_dt" javaType="string"/>
+    </resultMap>
+
+    <select id="getAllBannerImage" parameterType="map" resultMap="imageItem">
+        SELECT IMAGE, HASH, COLLECT_SITE, DATE_FORMAT(REG_DT,'%Y%m%d') AS REG_DT
+        FROM MWS_COLT_BANNER
+        WHERE REG_DT >= '2022-01-01'
+        <if test="collectDay != null and collectDay != ''">
+            <![CDATA[
+		    AND REG_DT <= STR_TO_DATE(#{collectDay},'%Y-%m-%d')
+			]]>
+        </if>
+    </select>
+
+    <select id="getTodayBannerImage" parameterType="map" resultMap="imageItem">
+        SELECT IMAGE, HASH, COLLECT_SITE, DATE_FORMAT(REG_DT,'%Y-%m-%d') AS REG_DT
+        FROM MWS_COLT_BANNER
+        <if test="collectStartDay != null and collectStartDay != ''">
+		    WHERE REG_DT >= STR_TO_DATE(#{collectStartDay},'%Y-%m-%d')
+        </if>
+        <if test="collectEndDay != null and collectEndDay != ''">
+            <![CDATA[
+		    AND REG_DT <= STR_TO_DATE(#{collectEndDay},'%Y-%m-%d')
+			]]>
+        </if>
+    </select>
+
+    <select id="checkNewImage" parameterType="map" resultType="int">
+        SELECT count(ID) as count
+        FROM MWS_COLT_BANNER
+        WHERE COLLECT_SITE = #{collectSite}
+        and    HASH = #{hash}
+    </select>
+
+<!--
+
+    <select id="getTodayBannerImage" resultMap="imageItem">
+        SELECT IMAGE, HASH, COLLECT_SITE, DATE_FORMAT(REG_DT, '%Y%m%d') AS REG_DT
+        FROM MWS_COLT_BANNER
+        WHERE 1=1
+        <if test="collectStartDay != null and collectStartDay != ''">
+            <![CDATA[
+			AND REG_DT >= STR_TO_DATE(#{collectStartDay},'%Y%m%d')
+			]]>
+        </if>
+        <if test="collectEndDay != null and collectEndDay != ''">
+            <![CDATA[
+			AND REG_DT <= STR_TO_DATE(#{collectEndDay},'%Y%m%d %H%i%s')
+			]]>
+        </if>
+    </select>
+-->
+
+</mapper>
