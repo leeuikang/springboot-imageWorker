@@ -34,22 +34,22 @@ public class ImageDownloader implements ApplicationRunner {
     @Autowired
     private ApplicationContext context;
 
-    @Value("${spring.datasource-lg-eg.use}")
+    @Value("${spring.datasource-one.use}")
     private boolean DB1;
 
-    @Value("${spring.datasource-lg-eg2.use}")
+    @Value("${spring.datasource-two.use}")
     private boolean DB2;
 
-    @Value("${spring.datasource-lg-eg3.use}")
+    @Value("${spring.datasource-three.use}")
     private boolean DB3;
 
-    @Value("${spring.datasource-lg-eg4.use}")
+    @Value("${spring.datasource-four.use}")
     private boolean DB4;
 
-    @Value("${spring.datasource-lg-eg5.use}")
+    @Value("${spring.datasource-five.use}")
     private boolean DB5;
 
-    @Value("${spring.datasource-lg-eg6.use}")
+    @Value("${spring.datasource-six.use}")
     private boolean DB6;
 
 
@@ -60,12 +60,12 @@ public class ImageDownloader implements ApplicationRunner {
             for (int index = 0; index < dbList.size(); index++) {
                 if (dbList.get(index)) {
                     switch (index) {
-                        case 0 -> dbHandler.setImageDao(context.getBean(LgegDao.class));
-                        case 1 -> dbHandler.setImageDao(context.getBean(Lgeg2Dao.class));
-                        case 2 -> dbHandler.setImageDao(context.getBean(Lgeg3Dao.class));
-                        case 3 -> dbHandler.setImageDao(context.getBean(Lgeg4Dao.class));
-                        case 4 -> dbHandler.setImageDao(context.getBean(Lgeg5Dao.class));
-                        case 5 -> dbHandler.setImageDao(context.getBean(Lgeg6Dao.class));
+                        case 0 : dbHandler.setImageDao(context.getBean(LgegDao.class)); break;
+                        case 1 : dbHandler.setImageDao(context.getBean(Lgeg2Dao.class)); break;
+                        case 2 : dbHandler.setImageDao(context.getBean(Lgeg3Dao.class)); break;
+                        case 3 : dbHandler.setImageDao(context.getBean(Lgeg4Dao.class)); break;
+                        case 4 : dbHandler.setImageDao(context.getBean(Lgeg5Dao.class)); break;
+                        case 5 : dbHandler.setImageDao(context.getBean(Lgeg6Dao.class)); break;
                     }
                     //Set<Image> todayBannerImageList = getBannerImagesFromDB(); //getTodayImagesFromDB(); 교체 예정
                     Set<Image> todayBannerImageList = getTodayImagesFromDB(); // 교체 예정
