@@ -13,22 +13,22 @@ spring:
       password: ENC(ssZWZfe/VbR+y1OoXU00L/F4BIpdIBn5)
 ---
 spring:
-  datasource-lg-eg:
+  datasource-one:
     use: true
     url: ENC(gOHs17qMFUCB1B73+uiqfVUKXixxVvRKWX5VHQpng2E2QB++7bcP0AStbAACM25ypozrCF48/7PX4W/cUqzoTW1oa+A0qvdXn03RdEc6bLMV+f8Aw6uO8tDQkQsn6lPbDvJkzgk8vOFrIH2XHrg7mKxURITjaSGr)
-  datasource-lg-eg2:
+  datasource-two:
     use: true
     url: ENC(VlOxpYa8tm50ViNikxCoy4SVMCg01NHcZn8dyGG5yWNtbLNrlS8QQ7nRF/aPXQpKf9CEv5XJXcmgSXGK/dKiY2Oh3HDaGe2klaqNof8JE4J0FizRumOHbbz1+ZMiYwMtXaRcOa2cYPOohO9iNM09g+FC1yseZPJ5)
-  datasource-lg-eg3:
+  datasource-three:
     use: true
     url: ENC(E8xxLJO8qM6eL4pw6J39/bqEWRFR2DvH36Q2fqC838kE5KN1FN+KDQDaUhQM0i8uDYEEVA772aDuwkXPJEQeezJd5+6nT8qmHMHAW+E3EaWx2+/Vsrg+sJftVdm6amaJMo7B8qkN1uZyHvZCdQw6nbZxTzstQC4U)
-  datasource-lg-eg4:
+  datasource-four:
     use: true
     url: ENC(sZOmfNQ1lHec8l4VDWZIhS1Gh7NUx/KXmGvI37V+2vZlOTrznrpKCxv+PqGWa5dxnU9IlqMsT1eVt2q1AwAr3aNNtLOFue6Xr1MqUuQpuVI4IgZChWHAM1hqbrzJzesWtMyM5wV3r9hfTDXg/Lf0Mp4L9EhTSJaX)
-  datasource-lg-eg5:
+  datasource-five:
     use: false
     url: ENC(WrRRcEzvWWS4C7+SPYkz0PI+BgURw0G7cQFHr4ePT2hdjnRqqBJmQwJOJ90bdjhLID6zyzkDqDbACxBpFWbxxpmuXFG7TZzn1BVuUI7UyjEgyIrb2iwUEPjl/HoqiYDLcrfP6BJuidrsMnqRIVLvSzc6EG2PoZiw)
-  datasource-lg-eg6:
+  datasource-six:
     use: false
     url: ENC(7Fnzfgf14EpTBEEw0nLViaeVkzz6SGh6qEiq7qva8REFWz1RWQHikFO4+hsfrBkM7BmAOlu/3bdelr3pMcqA43QpKPPXQpNZRxDs52OEdKIDgKOp2Ecnt12NbRHgPSQfgrPyJbEocMcdNyTh3VncbJcDgguuGYSi)
 
