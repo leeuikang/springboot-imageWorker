@@ -2,6 +2,7 @@ package com.example.image.task;
 
 import com.example.image.container.Image;
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 
+@Component
 @Data
 public class RequestService {
     private int retryCount;

@@ -32,6 +32,9 @@ public class ImageDownloader implements ApplicationRunner {
     private DBHandler dbHandler;
 
     @Autowired
+    private RequestService requestService;
+
+    @Autowired
     private ApplicationContext context;
 
     @Value("${spring.datasource-one.use}")
@@ -57,6 +60,7 @@ public class ImageDownloader implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         try {
             List<Boolean> dbList = Arrays.asList(DB1, DB2, DB3, DB4, DB5, DB6);
+
             for (int index = 0; index < dbList.size(); index++) {
                 if (dbList.get(index)) {
                     switch (index) {
@@ -72,6 +76,7 @@ public class ImageDownloader implements ApplicationRunner {
                     List<Image> downloadImageList = getDownloadImageList(todayBannerImageList);
                     fileDownLoad(downloadImageList);
                 }
+
             }
         } catch (Exception e) {
             System.err.println(e.getMessage());
@@ -95,8 +100,7 @@ public class ImageDownloader implements ApplicationRunner {
     }
 
     public void fileDownLoad(List<Image> duplicatedImageRemoveList) throws Exception {
-        RequestService request = new RequestService();
-        request.setRetryCount(retryCount);
+        requestService.setRetryCount(retryCount);
 
         /**
          * 이미지 업로드할때 db에 인서트
@@ -107,7 +111,7 @@ public class ImageDownloader implements ApplicationRunner {
          **/
 
         for (Image image : duplicatedImageRemoveList) {
-            if (request.request(image)) {
+            if (requestService.request(image)) {
                 System.out.println("success");
                 // logging sucess
             } else {
