@@ -48,6 +48,7 @@ public class RequestService {
         return false;
     }
 
+
     private void mkDir() {
         new File(RequestService.path).mkdir();
     }
@@ -62,5 +63,21 @@ public class RequestService {
 
     private boolean imageDownloadSuccessCheck(String filePath) {
         return new File(filePath).exists();
+    }
+
+    /**
+     * upload request
+     * @return success -> true, failure -> false
+     * @throws Exception
+     */
+    public boolean requestUpload() throws Exception{
+
+        /**
+         * header -> Authorization
+         * header -> Content-Type: application/json
+         * post 요청
+         * download된 image를 api를 이용하여 업로드
+         */
+        return true;
     }
 }
