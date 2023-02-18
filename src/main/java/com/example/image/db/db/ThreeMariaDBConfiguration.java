@@ -3,6 +3,7 @@ package com.example.image.db.db;
 import com.example.image.db.DBConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -19,15 +20,13 @@ import javax.sql.DataSource;
 
 @Configuration
 @MapperScan(value="com.example.image.db.dao.three", sqlSessionFactoryRef="threeSqlSessionFactory")
+@RequiredArgsConstructor
 public class ThreeMariaDBConfiguration {
-    @Autowired
-    Environment env;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final Environment env;
 
-    @Autowired
-    private DBConfig dbConfiguration;
+    private final ApplicationContext applicationContext;
+    private final DBConfig dbConfiguration;
 
     @Bean(name = "threeDataSource")
     public DataSource threeDataSource() {
