@@ -18,7 +18,6 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnProperty(prefix = "spring.", name = "datasource-three.use", havingValue = "true", matchIfMissing = false)
 @MapperScan(value="com.example.image.db.dao.three", sqlSessionFactoryRef="threeSqlSessionFactory")
 public class ThreeMariaDBConfiguration {
     @Autowired

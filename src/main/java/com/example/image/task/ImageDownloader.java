@@ -10,6 +10,8 @@ import com.example.image.db.dao.three.ThreeDao;
 import com.example.image.db.dao.four.FourDao;
 import com.example.image.db.dao.five.FiveDao;
 import com.example.image.db.dao.six.SixDao;
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
@@ -26,16 +28,18 @@ import java.util.stream.Collectors;
  * logback.xml 차후 추가 예정
  */
 @Component
+@RequiredArgsConstructor
 public class ImageDownloader implements ApplicationRunner {
     private static final int retryCount = 5;
-    @Autowired
-    private DBHandler dbHandler;
 
-    @Autowired
-    private RequestService requestService;
-
-    @Autowired
-    private ApplicationContext context;
+    private final DBHandler dbHandler;
+    private final RequestService requestService;
+    private final OneDao oneDao;
+    private final TwoDao twoDao;
+    private final ThreeDao threeDao;
+    private final FourDao fourDao;
+    private final FiveDao fiveDao;
+    private final SixDao sixDao;
 
     @Value("${spring.datasource-one.use}")
     private boolean DB1;
@@ -64,12 +68,24 @@ public class ImageDownloader implements ApplicationRunner {
             for (int index = 0; index < dbList.size(); index++) {
                 if (dbList.get(index)) {
                     switch (index) {
-                        case 0 : dbHandler.setImageDao(context.getBean(OneDao.class)); break;
-                        case 1 : dbHandler.setImageDao(context.getBean(TwoDao.class)); break;
-                        case 2 : dbHandler.setImageDao(context.getBean(ThreeDao.class)); break;
-                        case 3 : dbHandler.setImageDao(context.getBean(FourDao.class)); break;
-                        case 4 : dbHandler.setImageDao(context.getBean(FiveDao.class)); break;
-                        case 5 : dbHandler.setImageDao(context.getBean(SixDao.class)); break;
+                        case 0:
+                            dbHandler.setImageDao(oneDao);
+                            break;
+                        case 1:
+                            dbHandler.setImageDao(twoDao);
+                            break;
+                        case 2:
+                            dbHandler.setImageDao(threeDao);
+                            break;
+                        case 3:
+                            dbHandler.setImageDao(fourDao);
+                            break;
+                        case 4:
+                            dbHandler.setImageDao(fiveDao);
+                            break;
+                        case 5:
+                            dbHandler.setImageDao(sixDao);
+                            break;
                     }
                     //Set<Image> todayBannerImageList = getBannerImagesFromDB(); //getTodayImagesFromDB(); 교체 예정
                     Set<Image> todayBannerImageList = getTodayImagesFromDB(); // 교체 예정

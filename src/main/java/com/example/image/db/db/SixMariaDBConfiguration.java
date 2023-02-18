@@ -18,8 +18,7 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnProperty(prefix = "spring.", name = "datasource-six.use", havingValue = "true", matchIfMissing = false)
-@MapperScan(value="com.example.wspider_image.db.dao.six", sqlSessionFactoryRef="sixSqlSessionFactory")
+@MapperScan(value="com.example.image.db.dao.six", sqlSessionFactoryRef="sixSqlSessionFactory")
 public class SixMariaDBConfiguration {
     @Autowired
     Environment env;
@@ -33,7 +32,7 @@ public class SixMariaDBConfiguration {
     @Bean(name = "sixDataSource")
     public DataSource sixDataSource() {
         HikariConfig hikariConfig = dbConfiguration.getHikariConfig();
-        hikariConfig.setJdbcUrl(env.getProperty("spring.datasource-lg-eg6.url"));
+        hikariConfig.setJdbcUrl(env.getProperty("spring.datasource-six.url"));
         return new HikariDataSource(hikariConfig);
     }
 

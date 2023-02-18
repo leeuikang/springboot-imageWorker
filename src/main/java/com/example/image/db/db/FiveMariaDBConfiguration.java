@@ -3,6 +3,7 @@ package com.example.image.db.db;
 import com.example.image.db.DBConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,17 +19,13 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnProperty(prefix = "spring.", name = "datasource-five.use", havingValue = "true", matchIfMissing = false)
-@MapperScan(value="com.example.wspider_image.db.dao.five", sqlSessionFactoryRef="fiveSqlSessionFactory")
+@MapperScan(value="com.example.image.db.dao.five", sqlSessionFactoryRef="fiveSqlSessionFactory")
+@RequiredArgsConstructor
 public class FiveMariaDBConfiguration {
-    @Autowired
-    Environment env;
 
-    @Autowired
-    private ApplicationContext applicationContext;
-
-    @Autowired
-    private DBConfig dbConfiguration;
+    private final Environment env;
+    private final ApplicationContext applicationContext;
+    private final DBConfig dbConfiguration;
 
     @Bean(name = "fiveDataSource")
     public DataSource fiveDataSource() {

@@ -3,6 +3,7 @@ package com.example.image.db.db;
 import com.example.image.db.DBConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import lombok.RequiredArgsConstructor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,17 +19,15 @@ import org.springframework.core.env.Environment;
 import javax.sql.DataSource;
 
 @Configuration
-@ConditionalOnProperty(prefix = "spring.", name = "datasource-lg-eg4.use", havingValue = "true", matchIfMissing = false)
-@MapperScan(value="com.example.wspider_image.db.dao.lg.lg4", sqlSessionFactoryRef="lgEg4SqlSessionFactory")
+@MapperScan(value="com.example.image.db.dao.four", sqlSessionFactoryRef="fourSqlSessionFactory")
+@RequiredArgsConstructor
 public class FourMariaDBConfiguration {
-    @Autowired
-    Environment env;
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    private final Environment env;
 
-    @Autowired
-    private DBConfig dbConfiguration;
+    private final ApplicationContext applicationContext;
+
+    private final DBConfig dbConfiguration;
 
     @Bean(name = "fourDataSource")
     public DataSource fourDataSource() {

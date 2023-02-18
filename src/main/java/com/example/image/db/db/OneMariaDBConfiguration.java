@@ -19,7 +19,6 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@ConditionalOnProperty(prefix = "spring.", name = "datasource-one.use", havingValue = "true", matchIfMissing = false)
 @MapperScan(value="com.example.image.db.dao.one", sqlSessionFactoryRef="oneSqlSessionFactory")
 public class OneMariaDBConfiguration {
     @Autowired
